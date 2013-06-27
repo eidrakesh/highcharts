@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript">
+$(function () {
+        $('#container').highcharts({
+    
+            chart: {
+                type: 'column'
+            },
+    
+            title: {
+                text: 'Total fruit consumtion, grouped by gender'
+            },
+    
+            xAxis: {
+                categories: ['Apples', 'Oranges']
+               // categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            },
+    
+            yAxis: {
+                allowDecimals: false,
+                min: 0,
+                title: {
+                    text: 'Number of fruits'
+                }
+            },
+    
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.x +'</b><br/>'+
+                        this.series.name +': '+ this.y +'<br/>'+
+                        'Total: '+ this.point.stackTotal;
+                }
+            },
+    
+            plotOptions: {
+                column: {
+                    stacking: 'normal'
+                }
+            },
+     
+          series: [{
+                name: 'John',
+               // data: [5, 3, 4, 7, 2],
+                data: [5, 3],
+                stack: 'male'
+            }]  /* */
+        });
+		
+	
+		
+		getrand = function() {
+		var min =1 ;
+		var max =9 ;
+		return min + Math.floor(Math.random() * (max - min + 1));
+		}
+		superb = function(options) {
+		
+		 var chart = $('#container').highcharts();
+       // if (chart.series.length == 1) {
+            chart.addSeries({
+                data: [{
+                name: 'John',
+               // data: [5, 3, 4, 7, 2],
+                data: options[0],
+                stack: 'male'
+            }]
+            });
+        //} 
+		
+		}
+		sizePic = function (sid) {
+		var size = document.getElementById("size"+sid).value;
+		//sid = parseInt(sid);
+		//var size1 = document.getElementById("size"+sid1).value;
+		size = parseInt(size);
+		var ar1 = [size, size+1];
+		var chart = $('#container').highcharts();
+		sid = parseInt(sid);
+		chart.series[sid].setData(ar1);
+	}
+	 
+	 
+	
+	
+	$('#button').click(function() {
+        var chart = $('#container').highcharts();
+      
+    });
+	
+    });
+	/* $(document).ready(function () {
+	
+		
+	
+	}) */
+	
+    
+
+		</script>
+		<style>
+		div.control {
+		float: left;
+		width: 50%;text-align:center;
+		}
+		</style>
+	</head>
+	<body>
+<script src="../../js/highcharts.js"></script>
+<script src="../../js/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+ <div class="control"> <p><input type="range" min="1" max="5" id="size0" onchange="sizePic(0)"></p></div>
+ <div class="control"> <p><input type="range" min="1" max="5" id="size1" onchange="sizePic(1)"></p></div>
+<div class="controls">
+
+</div>
+</body>
+</html>
